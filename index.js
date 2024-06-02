@@ -1,6 +1,3 @@
-const humanScore = 0;
-const computerScore = 0;
-
 const map = new Map();
 
 map.set(1, "piedra");
@@ -30,20 +27,45 @@ function getHumanChoice() {
     return map.get(+choice);
 }
 
-function playRound(humanChoice, computerChoice) {
-    if(humanChoice == computerChoice) {
-        console.log("empate");
-    } else if (
-        (humanChoice == "tijera" && computerChoice == "papel") ||
-        (humanChoice == "papel" && computerChoice == "piedra") ||
-        (humanChoice == "piedra" && computerChoice == "tijera")
-    ) {
-        console.log(`Ganaste: ${humanChoice} vence a ${computerChoice}`);
-        humanScore++;
+
+
+
+function playGame () {
+
+    let humanScore = 0;
+    let computerScore = 0;
+    let roundsPlayed = 0;
+
+    function playRound(humanChoice, computerChoice) {
+        if(humanChoice == computerChoice) {
+            console.log("empate");
+        } else if (
+            (humanChoice == "tijera" && computerChoice == "papel") ||
+            (humanChoice == "papel" && computerChoice == "piedra") ||
+            (humanChoice == "piedra" && computerChoice == "tijera")
+        ) {
+            console.log(`Ganaste: ${humanChoice} vence a ${computerChoice}`);
+            humanScore++;
+        }
+        else {
+            console.log(`Perdiste: ${computerChoice} vence a ${humanChoice}`);
+            computerScore++;
+        }
     }
-    else {
-        console.log(`Perdiste: ${computerChoice} vence a ${humanChoice}`);
-        computerScore++;
+
+    while(roundsPlayed < 5) {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+        roundsPlayed++;
     }
+    
+    console.log(`Human socore: ${humanScore}. Computer score: ${computerScore}`);
 }
+
+playGame();
+
+
+
+
 //        console.log(`Putos humanos: ${humanScore}. Puntos computadora: ${computerScore}` )
