@@ -1,15 +1,25 @@
+const map = new Map();
+map.set(1, "piedra");
+map.set(2, "papel");
+map.set(3, "tijera");
+
 function getComputerChoice() {
     let num = Math.random();
 
     if(num < 0.33333) {
-        console.log("piedra " + num)
+        return map.get(1);
     }
     else if (num < 0.66666) {
-        console.log("papel " + num)
+        return map.get(2);
 
     } 
     else {
-        console.log("tijera "+ num)
-
+        return map.get(3);
     }  
+}
+
+function getHumanChoice() {
+    let choice = prompt("1. priedra \n2. papel \n3. tijera");
+
+    return map.get(+choice);
 }
